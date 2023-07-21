@@ -1,0 +1,35 @@
+<?php
+// Retrieve form data
+$nama = $_POST['nama'];
+$noidentitas = $_POST['noidn'];
+$nohp = $_POST['nohp'];
+$tglkunjungan = $_POST['tanggal'];
+$jmldewasa = $_POST['jumlah_dewasa'];
+$jmlanak = $_POST['jumlah_anak'];
+$totalbayar = $_POST['total_bayar'];
+
+// Database connection
+$servername = "localhost"; // Change this to your MySQL server address
+$username = "root"; // Change this to your MySQL username
+$password = ""; // Change this to your MySQL password
+$dbname = "jwdwisata"; // Change this to your database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Insert data into the database
+$sql = "INSERT INTO data (nama, noidentitas, nohp, tglkunjungan, jmldewasa, jmlanak, totalbayar)
+        VALUES ('$nama', '$noidentitas', '$nohp', '$tglkunjungan', $jmldewasa, $jmlanak, $totalbayar)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Reservation submitted successfully!";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+?>
