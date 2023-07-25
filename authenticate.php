@@ -12,7 +12,7 @@ if ($submittedUsername === $validUsername && $submittedPassword === $validPasswo
     // Successful login, set up the user session
     session_start();
     $_SESSION["authenticated"] = true;
-    header("Location: index.php");
+    header("Location: index.html");
     exit;
 } else {
     // Failed login, redirect back to login.php with an error message
