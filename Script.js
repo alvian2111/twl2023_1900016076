@@ -1,3 +1,29 @@
+// Script.js
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                // Login success, redirect to the home page or other authenticated pages
+                window.location.href = "index.php";
+            } else {
+                alert("Login failed. Please check your username/email and password.");
+            }
+        }
+    };
+
+    xhr.open("POST", form.action, true);
+    xhr.send(formData);
+});
+
+
+
+
 function updateFormFields(place, price) {
   const tempatwisataInput = document.getElementById("tempatwisata");
   const hargaInput = document.getElementById("harga");
